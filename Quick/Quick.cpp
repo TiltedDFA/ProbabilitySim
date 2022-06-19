@@ -1,42 +1,38 @@
 #include <iostream>
 #include <vector>
+#include <array>
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
+#include <random>
+#include <list>
 
-constexpr int _t = 100000000;
+constexpr int _t = 1000000;
+
+std::random_device rd; //seed
+std::mt19937 gen(rd()); //seed for rd(Mersenne twister)
+std::uniform_int_distribution<> rng_coin(0, 28); //rng1 range
 
 int main()
 {     
     const auto start = std::chrono::high_resolution_clock::now();
-    std::vector<uint_fast8_t>Deck;    
-    uint_fast32_t ap=0;
-
-    srand(time(NULL));
-
- 
-    for (int i = 26; --i;)
-        Deck.push_back(1);
-
-    for (int i = 5; --i;)  
-        Deck.push_back(6);
-
-    Deck.shrink_to_fit();
+    std::array<uint_fast8_t,29>Deck = {
+    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,6,6
+    };
+    int ap=0;
     uint_fast32_t __t = _t;
-
     for (; --__t;)
     {
-        std::vector<int>Hand;
-        
+        std::vector<int>Hand{};
         for (int i = 7; --i;)
         {
-            const uint_fast8_t k = Deck[rand() % 28];
+            const uint_fast8_t k = Deck[rng_coin(gen)];
             Hand.push_back(k);            
             if (k == 6)
                 ++ap;
         }              
     }
-    const double percent = ap / _t;
+    auto percent = (ap / _t);
     std::cout << percent << "%\n";
     std::cout << ap << std::endl;
     const auto stop = std::chrono::high_resolution_clock::now();
