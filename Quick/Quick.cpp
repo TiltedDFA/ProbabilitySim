@@ -9,7 +9,7 @@
 #include <thread>
 #include <future>
 
-constexpr int _t = 10000000;
+constexpr int _t = 1000000;
 
 int fun_1() {
     std::random_device rd;
