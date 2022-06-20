@@ -19,7 +19,7 @@ int fun_1() {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6
     };
     int ap = 0;
-    int __t = (_t / 9);
+    int __t = (_t / 10);
     for (; --__t;)
     {
         for (int i = 7; --i;)
@@ -50,7 +50,8 @@ int main()
     auto f7 = std::async(fun_1);
     auto f8 = std::async(fun_1);
     auto f9 = std::async(fun_1);
-    std::cout << (f1.get() + f2.get() + f3.get() + f4.get() + f5.get() + f6.get() + f7.get() + f8.get() + f9.get()) << std::endl;
+    auto f10 = std::async(fun_1);
+    std::cout << (f1.get() + f2.get() + f3.get() + f4.get() + f5.get() + f6.get() + f7.get() + f8.get() + f9.get() + f10.get()) << std::endl;
 
     const auto stop = std::chrono::high_resolution_clock::now();
     const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
