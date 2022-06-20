@@ -7,7 +7,7 @@
 #include <random>
 #include <list>
 
-constexpr int _t = 1000000000;
+constexpr int _t = 1000000;
 
 int main()
 {     
