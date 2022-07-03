@@ -1,33 +1,30 @@
 #include <iostream>
-#include <vector>
 #include <array>
 #include <cstdlib>
-#include <ctime>
 #include <chrono>
 #include <random>
-#include <list>
 #include <thread>
 #include <future>
 
-constexpr int _t = 1000000;
+constexpr long long int _t = 1'000'000'000;
 
-int fun_1() {
+int fun_1() noexcept{
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> rng_coin(0, 29);
-    std::vector<int_fast8_t>deck = {
+    std::array<int,30>deck = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6
     };
     int ap = 0;
-    int __t = (_t / 10);
-    for (; --__t;)
+    long long int __t = (_t / 10);
+    while ( --__t)
     {
-        for (int i = 7; --i;)
+        for (unsigned short i = 7; --i;)
         {
             const int_fast8_t k = rng_coin(gen);
             if (deck[k] == 6)
             {
-                ++ap;
+                ++ap;                
                 deck[k] = 1;
             }
         }
@@ -57,4 +54,5 @@ int main()
     const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
     std::cout << duration.count() << " MilliSeconds\n";
     system("PAUSE>0");
+    return 0;
 }
